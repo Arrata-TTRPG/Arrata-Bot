@@ -21,7 +21,7 @@ public class main extends ListenerAdapter {
         // All other events will be disabled.
         JDABuilder.createLight(args[0], GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES)
                 .addEventListeners(new main())
-                .setActivity(Activity.playing("Type !ping"))
+                .setActivity(Activity.playing("Arrata; Use \"!A\""))
                 .build();
     }
 
