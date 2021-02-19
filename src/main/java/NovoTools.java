@@ -3,6 +3,25 @@ import java.util.Random;
 public class NovoTools {
     // Used for various probabilities.
     private final Random random  = new Random();
+    // This returns the number of successes made.
+    public int[] startDifficultyRoll(String[] stats) {
+        String difficulty;
+        String stat;
+        if (checkDifficultyValid(stats[0])) {
+            difficulty = stats[0];
+            stat = stats[1];
+        }
+        else {
+            stat = stats[0];
+            difficulty = stats[1];
+        }
+        System.out.println(difficulty + " " + stat);
+        difficulty = new StringBuilder(difficulty).reverse().toString();
+        System.out.println(difficulty + " " + stat);
+        int[] statDice = getStatDice(new String[] {difficulty, stat});
+        System.out.println(statDice[0] + " " + statDice[1]);
+        return new int[] {rollDice(statDice)[0], difficulty.charAt(1) - '0'};
+    }
 
     // Returns an array that shows the amount of successes each contestant got.
     public int[] statContest (String[] stats) throws Exception {
@@ -73,8 +92,17 @@ public class NovoTools {
         return statsQuantity;
     }
 
-    // Checks if the provided stat is valid or not.
+    // Checks if the provided difficulty is valid or not.
     public boolean checkStatValid (String stat) {
-        return stat.length() <= 2 && stat.charAt(0) - 'A' <= 5 && stat.charAt(1) - '0' <= 6;
+        if (stat.equals(""))
+            return false;
+        return stat.length() <= 2 && stat.charAt(0) - 'A' <= 5 && stat.charAt(0) - 'A' >= 0 && stat.charAt(1) - '0' <= 6 && stat.charAt(1) - '0' >= 0;
+    }
+
+    // Checks if the provided stat is valid or not.
+    public boolean checkDifficultyValid(String stat) {
+        if (stat.equals(""))
+            return false;
+        return stat.length() <= 2 && stat.charAt(1) - 'A' <= 5 && stat.charAt(1) - 'A' >= 0 && stat.charAt(0) - '0' <= 6 && stat.charAt(0) - '0' >= 0;
     }
 }
