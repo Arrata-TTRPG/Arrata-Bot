@@ -137,8 +137,8 @@ public class NovoTools {
 
         // This array stores the values for each skill.
         // Every 3 level-ups provides a Minor skill, and every 5 provides a Major skill.
-        int majors = 3 + (level / 5);
-        int minors = 5 + level / 3;
+        int majors = 3 + ((level - 1) / 5);
+        int minors = 5 + ((level - 1) / 3);
         String[] majorSkills = new String[majors];
         String[] minorSkills = new String[minors];
 
