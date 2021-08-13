@@ -20,7 +20,7 @@ public class main extends ListenerAdapter {
             "Dogs are not allowed. Unless you're ordering.", "You're a malformed brainlet.", "POG?!", "POGGERS?!", "It's :) retard.\n:)", "It's :) retard.\n:)", "Ur mom is a genius."
     };
     private final String[] banned = {
-            "rawr", "i hate you kaleb", "fuck kaleb", "kill yourself", "nigger", "faggot", "fuck", "damn", "shit", "cunt", "ass", "dick", "cock", "uwu", "owo", "jew", "꜀ᵣᵢₙ₉ₑ", "ᶜʳᶦⁿᵍᵉ",
+            "rawr", "kill yourself", "fuck", "damn", "shit", "cunt", "ass", "dick", "cock", "uwu", "owo",
             "I love based crack. Thanks for the war crimes xd lol rawr kill me tho. Haha amogus floop, bork bork, please compliment me for my pog poggers (: {=", "ⱼₑᵥᵥ", "ₒwₒ", "ᵤwᵤ", "cringe"
     };
     private final NovoTools tools = new NovoTools();
