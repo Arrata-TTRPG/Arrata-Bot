@@ -1,2 +1,6 @@
 # Project exclude paths
 /target/
+
+# Added by cargo
+
+/target
