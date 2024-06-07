@@ -16,9 +16,8 @@ tokio = "1.38.0"
 tracing = "0.1.40"
 
 [dependencies.arrata-lib]
-path = "../Arrata-LIB"
-#git = "https://github.com/Arrata-TTRPG/Arrata-LIB"
-#branch = "main"
+git = "https://github.com/Arrata-TTRPG/Arrata-LIB"
+branch = "main"
 
 [profile.dev]
 lto = "off"

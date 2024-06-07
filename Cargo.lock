@@ -114,6 +114,7 @@ dependencies = [
 [[package]]
 name = "arrata-lib"
 version = "0.1.0"
+source = "git+https://github.com/Arrata-TTRPG/Arrata-LIB?branch=main#bcf0431d8d56184784b221d2babf43c1d47cc5c8"
 dependencies = [
  "clap",
  "rand",
