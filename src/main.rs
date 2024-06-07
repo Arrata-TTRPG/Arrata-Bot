@@ -1,6 +1,6 @@
 use anyhow::Context as _;
 use arrata_bot::Command;
-use arrata_lib::dice::roll_stat;
+use arrata_lib::{roll_stat, Obstacle};
 use clap::Parser;
 use itertools::Itertools;
 use serenity::async_trait;
@@ -16,7 +16,7 @@ struct Bot;
 impl EventHandler for Bot {
     async fn message(&self, ctx: Context, msg: Message) {
         if msg.content.starts_with("!a") || msg.content.starts_with("!A") {
-            let message = msg.content.split(" ").collect::<Vec<&str>>();
+            let message = msg.content.split(' ').collect::<Vec<&str>>();
 
             info!("Got message: {:?}", message);
 
@@ -46,17 +46,39 @@ impl EventHandler for Bot {
                                 }
                             }
 
-                            response.push_str(format!("{}`", r.stat).as_str());
+                            response.push_str(format!("{}", r.stat).as_str());
+
+                            if let Some(Obstacle(ob)) = r.ob {
+                                response.push_str(format!(" vs Ob {}", ob).as_str());
+                            }
+
+                            response.push('`');
 
                             response.push_str(
                                 format!(
-                                    "\n```{}\n\nSuccesses: {}\nFailures:  {}```",
+                                    "\n```{}\n\nSuccesses: {}\nFailures:  {}",
                                     result.results.iter().format(", "),
                                     result.successes,
                                     result.failures,
                                 )
                                 .as_str(),
                             );
+
+                            if let Some(Obstacle(ob)) = r.ob {
+                                if result.successes >= ob.try_into().unwrap() {
+                                    response.push_str(
+                                        format!("\n\nSuccess!   {} >= {}", result.successes, ob)
+                                            .as_str(),
+                                    );
+                                } else {
+                                    response.push_str(
+                                        format!("\n\nFailure... {} < {}", result.successes, ob)
+                                            .as_str(),
+                                    );
+                                }
+                            }
+
+                            response.push_str("```");
 
                             if let Err(e) = msg.channel_id.say(&ctx.http, response).await {
                                 error!("Error sending message: {:?}", e);
