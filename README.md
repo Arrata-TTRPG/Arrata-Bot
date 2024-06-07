@@ -7,8 +7,8 @@ A bot for managing Arrata games.
 ### Dice Rolls
 
 ```console
-!a [Quality][Quantity] [Ob (Optional)]
-!a b10 ob5
+!a roll [Quality][Quantity] [Ob (Optional)]
+!a roll b10 ob5
 ```
 
 ### Random Character Generation
