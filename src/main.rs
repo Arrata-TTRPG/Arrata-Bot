@@ -87,7 +87,7 @@ impl EventHandler for Bot {
                     };
                 }
                 Err(err) => {
-                    if let Err(e) = msg.channel_id.say(&ctx.http, format!("Error:\n```{err}```")).await {
+                    if let Err(e) = msg.channel_id.say(&ctx.http, format!("```{err}```")).await {
                         error!("Error sending message: {:?}", e);
                     }
                 }
